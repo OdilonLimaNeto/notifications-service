@@ -1,0 +1,35 @@
+version: '3.8'
+
+
+
+services:
+  notifications-service-test:
+    image: node:16-alpine
+    container_name: notifications-service-test
+    working_dir: /usr/src/app
+    entrypoint: /usr/src/app/docker/docker-entrypoint-test.sh
+    user: '${DUID}:${DGID}'
+    volumes:
+      - '..:/usr/src/app:Z'
+    networks:
+      - notifications-service-network-test
+    env_file:
+      - ./test.env
+    depends_on:
+      - notifications-service-db-test
+  notifications-service-db-test:
+    image: postgres:latest
+    container_name: notifications-service-db-test
+    networks:
+      - notifications-service-network-test
+    env_file:
+      - ./test.env
+    working_dir: /usr/src/app
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - 5433:5432
+      
+networks:
+  notifications-service-network-test:
+    driver: bridge
