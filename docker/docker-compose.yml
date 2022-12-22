@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   notifications-service:
-    image: node:16-alpine
+    image: node:18-bullseye
     container_name: notifications-service
     working_dir: /usr/src/app
     command: /usr/src/app/docker/docker-run.sh

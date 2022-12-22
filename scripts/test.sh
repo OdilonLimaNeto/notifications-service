@@ -10,7 +10,7 @@ case "$1" in
                 echo "Up Daemon ..."
                 DUID=$(id -u) DGID=$DOCKER_GROUP_ID  docker-compose -f $(pwd)/docker/docker-compose-test.yml down;
                 DUID=$(id -u) DGID=$(id -g) docker-compose -f $BASEDIR/docker/docker-compose-test.yml up \
-                --abort-on-container-exit  --exit-code-from devices-service-test;
+                --abort-on-container-exit  --exit-code-from notifications-service-test;
                 ;;
         shell)
                 echo "Up ..."
