@@ -14,14 +14,6 @@ case "$1" in
                 echo "Up ..."
                 DUID=$(id -u) DGID=$(id -g) docker-compose -f $BASEDIR/docker/docker-compose.yml up
                 ;;
-        startd)
-                echo "Start Daemon ..."
-                DUID=$(id -u) DGID=$(id -g) docker-compose -f $BASEDIR/docker/docker-compose.yml start -d
-                ;;
-        start)
-                echo "Start ..."
-                DUID=$(id -u) DGID=$(id -g) docker-compose -f $BASEDIR/docker/docker-compose.yml start
-                ;;
         down)
                 echo "Down ..."
                 DUID=$(id -u) DGID=$(id -g) docker-compose -f $BASEDIR/docker/docker-compose.yml down
@@ -38,12 +30,8 @@ case "$1" in
                 echo "Logs ..."
                 DUID=$(id -u) DGID=$(id -g) docker-compose -f $BASEDIR/docker/docker-compose.yml logs -f
                 ;;
-        db)
-                echo "Opening psql CLI ..."
-                docker exec -it notifications-service-db psql -p notifications -U notifications -d notifications-service-db
-                ;;
         *)
-                echo $"Usage: $0 {upd|up|startd|start|down|restart|logs|db}"
+                echo $"Usage: $0 {upd|up|down|restart|logs}"
                 RETVAL=2
 esac
 exit $RETVAL

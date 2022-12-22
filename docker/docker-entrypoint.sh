@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Production application entry-point
 echo "Starting Application"
 
 set -e
